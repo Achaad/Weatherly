@@ -23,6 +23,7 @@ public class IndexController {
     private String visitTime = "";
     private String ipAddress = "";
     private String browser = "";
+    private String location = "";
 
 
     @GetMapping("/")
@@ -33,10 +34,8 @@ public class IndexController {
         parseHeaderAgent(servletRequest.getHeader("User-Agent"));
         this.visitTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
-        return "index";       //vajalik pannab HTML faili nimi
+        return "index";    //vajalik pannab HTML faili nimi
     }
-
-
 
 
     //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
@@ -69,8 +68,4 @@ public class IndexController {
         //Browseri korrektne parsimine ilma library kasutamata tehtav ilusti, aga hea huumor.
 
     }
-
-
-
-
 }
