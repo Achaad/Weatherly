@@ -1,4 +1,4 @@
-package com.weatherly.demo;
+package com.weatherly.demo.controller;
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -27,11 +27,12 @@ public class IndexController {
 
     @GetMapping("/")
     public String homePage(Model model, HttpServletRequest servletRequest) {
+
         model.addAttribute("appName", appName);
 
         this.ipAddress = servletRequest.getRemoteAddr(); //Returns IP Address
         parseHeaderAgent(servletRequest.getHeader("User-Agent"));
-        this.visitTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+        this.visitTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
         return "index";       //vajalik pannab HTML faili nimi
     }
@@ -62,7 +63,7 @@ public class IndexController {
         {
             this.os = "IPhone";
         }else{
-            this.os = "UnKnown: " + lower;
+            this.os = "UnKnown";
         }
 
         //Lisada Browser parse tugi, kui viitsime, iseenesest 3 statistikat olemas.
