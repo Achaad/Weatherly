@@ -60,6 +60,8 @@ public class IndexController {
         }
         s.setOs(this.os);
 
+        statisticsRepository.save(s);
+
         return "index";    //vajalik pannab HTML faili nimi
     }
 
