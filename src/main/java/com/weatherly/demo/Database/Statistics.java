@@ -21,6 +21,10 @@ public class Statistics {
 
   private Date date;
 
+  private String browser;
+
+  private Boolean mobile;
+
   public Integer getId() {
     return id;
   }
@@ -51,5 +55,21 @@ public class Statistics {
 
   public void setDate(Date date) {
     this.date = date;
+  }
+
+  public String getBrowser() {
+    return browser;
+  }
+
+  public void setBrowser(String browser) {
+    this.browser = browser;
+  }
+
+  public Boolean getMobile() {
+    return mobile;
+  }
+
+  public void setMobile(Boolean mobile) {
+    this.mobile = mobile;
   }
 }
