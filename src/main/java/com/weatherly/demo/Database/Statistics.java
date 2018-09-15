@@ -1,7 +1,5 @@
 package com.weatherly.demo.Database;
 
-import sun.util.resources.Bundles;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
