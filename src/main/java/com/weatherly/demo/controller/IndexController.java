@@ -35,6 +35,7 @@ public class IndexController {
     private String ipAddress = "";
     private String browser = "";
     private String location = "";
+    private Boolean mobile;
 
 
     @GetMapping("/")
@@ -60,6 +61,7 @@ public class IndexController {
         }
         s.setOs(this.os);
         s.setBrowser(this.browser);
+        s.setMobile(this.mobile);
 
         statisticsRepository.save(s);
 
@@ -113,7 +115,12 @@ public class IndexController {
             this.browser = "Unknown";
         }
 
-        //Browseri korrektne parsimine ilma library kasutamata tehtav ilusti, aga hea huumor.
+        // Parsib, kas on tegemist mobiilse browseriga või mitte
+        if (lower.contains("mobile")) {
+            this.mobile = true;
+        } else {
+            this.mobile = false;
+        }
 
     }
 }
