@@ -59,6 +59,7 @@ public class IndexController {
             s.setDate(Calendar.getInstance().getTime());
         }
         s.setOs(this.os);
+        s.setBrowser(this.browser);
 
         statisticsRepository.save(s);
 
@@ -98,7 +99,20 @@ public class IndexController {
             this.os = "UnKnown";
         }
 
-        //Lisada Browser parse tugi, kui viitsime, iseenesest 3 statistikat olemas.
+        // Browseri parse tugi
+        // User-Agent on kirjeldatud veebilehel: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent
+        if (lower.contains("firefox")) {
+            this.browser = "Firefox";
+        } else if (lower.contains("chrome") && !lower.contains("opr")) {
+            this.browser = "Chrome";
+        } else if (lower.contains("opr")) {
+            this.browser = "Safari";
+        } else if (lower.contains("safari") && !lower.contains("chrome")) {
+            this.browser = "Safari";
+        } else {
+            this.browser = "Unknown";
+        }
+
         //Browseri korrektne parsimine ilma library kasutamata tehtav ilusti, aga hea huumor.
 
     }
