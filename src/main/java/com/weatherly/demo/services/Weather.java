@@ -25,7 +25,8 @@ public class Weather {
     private double windSpeed; //Tuulekiirus
     private String weatherState; //ilmaolukord, pilvine/p�ikseline jne.
     private String windDirection; // tuulesuund
-    private Double precipitation; // sademed
+    private String precipitation; // sademed
+
 
 
     public Weather(Location location) {
@@ -39,7 +40,23 @@ public class Weather {
             temp = Double.parseDouble(xml.getTagContentValue("temperature", "value"));
             windSpeed = Double.parseDouble(xml.getTagContentValue("windSpeed", "mps"));
             windDirection = xml.getTagContentValue("windDirection", "code");
-            precipitation = Double.parseDouble(xml.getTagContentValue("precipitation", "value"));
+            precipitation = xml.getTagContentValue("precipitation", "value");
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Weather(String latitude, String longitude){
+        try {
+
+            xml = new XML(new URL("https://weather.cit.api.here.com/weather/1.0/report.xml?product=observation&latitude=" + latitude + "&longitude=" + longitude + "&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg"));
+
+            weatherState = xml.getUnNestedTagContent("description");
+            temp = Double.parseDouble(xml.getUnNestedTagContent("temperature"));
+            windSpeed = Double.parseDouble(xml.getUnNestedTagContent("windSpeed"));
+            windDirection = xml.getUnNestedTagContent("windDescShort");
+            precipitation = xml.getUnNestedTagContent("precipitation1H");
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -69,7 +86,7 @@ public class Weather {
         return windDirection;
     }
 
-    public Double getPrecipitation() {
+    public String getPrecipitation() {
         return precipitation;
     }
 
