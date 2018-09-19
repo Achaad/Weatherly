@@ -7,7 +7,9 @@ public class Location {
 
     private String ipAadress;
 
-    private String apiAadress = "https://freegeoip.net/xml/";
+
+    private String API_KEY = "ENTER_KEY_HERE";
+    private String apiAadress = "http://api.ipstack.com/";
 
     private XML xml;
 
@@ -29,20 +31,19 @@ public class Location {
     }
     //Konstruktor, mis võtab andmed IP aadressi järgi
     public Location(String ipAadress) {
-        super();
         this.ipAadress = ipAadress;
 
         try {
 
-            xml = new XML(new URL(apiAadress + ipAadress));
-            latitude = xml.getUnNestedTagContent("Latitude");
-            longitude = xml.getUnNestedTagContent("Longitude");
+            xml = new XML(new URL(apiAadress + ipAadress + "?access_key=" + API_KEY+"&output=xml"));
+            latitude = xml.getUnNestedTagContent("latitude");
+            longitude = xml.getUnNestedTagContent("longitude");
 
-            country = xml.getUnNestedTagContent("CountryName");
-            countryCode = xml.getUnNestedTagContent("CountryCode");
-            regionName = xml.getUnNestedTagContent("RegionName");
+            country = xml.getUnNestedTagContent("country_name");
+            countryCode = xml.getUnNestedTagContent("country_code");
+            regionName = xml.getUnNestedTagContent("region_name");
 
-            city = xml.getUnNestedTagContent("City");
+            city = xml.getUnNestedTagContent("city");
 
 
         } catch (MalformedURLException e) {
