@@ -4,7 +4,6 @@ package com.weatherly.demo.controller;
 import com.weatherly.demo.entities.Statistics;
 import com.weatherly.demo.repositories.StatisticsRepository;
 import com.weatherly.demo.services.Location;
-import com.weatherly.demo.services.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -23,11 +22,10 @@ import java.util.Locale;
 @Controller
 public class IndexController {
 
-    @Value("${spring.application.name}")
-    String appName;
-
     @Autowired
     private StatisticsRepository statisticsRepository;
+
+
 
 
     private String os = "";
@@ -40,8 +38,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String homePage(Model model, HttpServletRequest servletRequest) {
-
-        model.addAttribute("appName", appName);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale
@@ -62,6 +58,20 @@ public class IndexController {
         s.setOs(this.os);
         s.setBrowser(this.browser);
         s.setMobile(this.mobile);
+
+
+
+
+        //Get LAT/LONG based on IP.
+        location = new Location(ipAddress);
+
+        model.addAttribute("latitude", location.getLatitude());
+        model.addAttribute("longitude", location.getLongitude());
+        model.addAttribute("country", location.getCountry());
+        model.addAttribute("region", location.getRegionName());
+        model.addAttribute("city", location.getCity());
+
+
 
         statisticsRepository.save(s);
 
