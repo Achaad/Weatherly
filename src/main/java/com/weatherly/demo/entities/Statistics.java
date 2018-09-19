@@ -1,4 +1,4 @@
-package com.weatherly.demo.Database;
+package com.weatherly.demo.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
