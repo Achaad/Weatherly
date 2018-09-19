@@ -4,6 +4,7 @@ package com.weatherly.demo.controller;
 import com.weatherly.demo.entities.Statistics;
 import com.weatherly.demo.repositories.StatisticsRepository;
 import com.weatherly.demo.services.Location;
+import com.weatherly.demo.services.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -64,13 +65,10 @@ public class IndexController {
 
         //Get LAT/LONG based on IP.
         location = new Location(ipAddress);
+        Weather weather = new Weather(location.getLatitude(), location.getLongitude());
 
-        model.addAttribute("latitude", location.getLatitude());
-        model.addAttribute("longitude", location.getLongitude());
-        model.addAttribute("country", location.getCountry());
-        model.addAttribute("region", location.getRegionName());
-        model.addAttribute("city", location.getCity());
-
+        model.addAttribute("location", location.toString());
+        model.addAttribute("weather", weather.toString());
 
 
         statisticsRepository.save(s);
