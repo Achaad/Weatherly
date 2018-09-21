@@ -44,7 +44,7 @@ public class IndexController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale
             .ENGLISH);
 
-        this.ipAddress = servletRequest.getRemoteAddr(); //Returns IP Address
+        this.ipAddress = servletRequest.getHeader("x-forwarded-for"); //Returns IP Address
         parseHeaderAgent(servletRequest.getHeader("User-Agent"));
         this.visitTime = dateFormat.format(Calendar.getInstance().getTime());
 
