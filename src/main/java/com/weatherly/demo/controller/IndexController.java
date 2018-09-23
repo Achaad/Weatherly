@@ -37,6 +37,9 @@ public class IndexController {
     private Boolean mobile;
 
 
+
+    //stats.html, stats.css stats.js
+
     @GetMapping("/")
     public String homePage(Model model, HttpServletRequest servletRequest) {
 
@@ -64,7 +67,7 @@ public class IndexController {
 
 
         //Get LAT/LONG based on IP.
-        location = new Location(ipAddress);
+        location = new Location("193.40.12.10");
         Weather weather = new Weather(location.getLatitude(), location.getLongitude());
 
         model.addAttribute("location", location.toString());
@@ -79,11 +82,11 @@ public class IndexController {
 
 
 
-    @GetMapping("/stats")
-    public @ResponseBody Iterable<Statistics> getAllStats() {
-        // This returns a JSON or XML with the statistics
-        return statisticsRepository.findAll();
-    }
+//    @GetMapping("/stats")
+//    public @ResponseBody Iterable<Statistics> getAllStats() {
+//        // This returns a JSON or XML with the statistics
+//        return statisticsRepository.findAll();
+//    }
 
 
 
