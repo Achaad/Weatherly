@@ -15,13 +15,6 @@ osCanvas.height = 400;
 
 
 
-var myVinyls = {
-    "Classical music": 10,
-    "Alternative rock": 14,
-    "Pop": 2,
-    "Jazz": 12
-};
-
 function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color ){
     ctx.fillStyle = color;
     ctx.beginPath();
@@ -78,25 +71,57 @@ var Piechart = function(options){
 
 
 
-var browserPieChart = new Piechart(
-    {
-        canvas:browserCanvas,
-        data:myVinyls,
-        colors:["#fde23e","#f16e23", "#57d9ff","#937e88"],
-        legend:browserLegend
-    }
-);
 
-var osPieChart = new Piechart(
-    {
-        canvas:osCanvas,
-        data:myVinyls,
-        colors:["#fde23e","#f16e23", "#57d9ff","#937e88"],
-        legend:osLegend
-    }
-);
+function makeBrowserPie() {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+            if (xmlhttp.status === 200) {
+                var myArr = JSON.parse(this.responseText);
+
+                var browserPieChart = new Piechart(
+                    {
+                        canvas:browserCanvas,
+                        data:myArr,
+                        colors:["#fde23e","#f16e23", "#57d9ff","#937e88"],
+                        legend:browserLegend
+                    }
+                );
+                browserPieChart.draw();
+            }
+        }
+    };
+
+    xmlhttp.open("GET", "/data/browser", true);
+    xmlhttp.send();
+}
+
+function makeOsPie() {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+            if (xmlhttp.status === 200) {
+                var myArr = JSON.parse(this.responseText);
+
+                var osPieChart = new Piechart(
+                    {
+                        canvas:osCanvas,
+                        data:myArr,
+                        colors:["#fde23e","#f16e23", "#57d9ff","#937e88", "#937e00", "#000000"],
+                        legend:osLegend
+                    }
+                )
+                osPieChart.draw();
+            }
+        }
+    };
+
+    xmlhttp.open("GET", "/data/os", true);
+    xmlhttp.send();
+}
 
 
-
-browserPieChart.draw();
-osPieChart.draw();
+makeBrowserPie();
+makeOsPie();

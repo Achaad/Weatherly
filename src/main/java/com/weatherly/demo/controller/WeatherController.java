@@ -15,7 +15,8 @@ public class WeatherController {
     // http://localhost:8080/weather?country=Estonia&regionName=Tartumaa&city=Tartu
 
     @GetMapping(path="/weather") // Map ONLY GET Requests
-    public @ResponseBody String addNewUser (@RequestParam String country
+    @ResponseBody
+    public String addNewUser (@RequestParam String country
             , @RequestParam String regionName, @RequestParam String city) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
