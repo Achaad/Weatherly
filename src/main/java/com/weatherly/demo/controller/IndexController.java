@@ -6,11 +6,9 @@ import com.weatherly.demo.repositories.StatisticsRepository;
 import com.weatherly.demo.services.Location;
 import com.weatherly.demo.services.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -42,8 +40,6 @@ public class IndexController {
     public String homePage(Model model, HttpServletRequest servletRequest) {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale
-            .ENGLISH);
 
         this.ipAddress = servletRequest.getHeader("x-real-ip"); //Returns IP Address
         parseHeaderAgent(servletRequest.getHeader("User-Agent"));
