@@ -13,8 +13,6 @@ browserCanvas.height = 400;
 osCanvas.width = 400;
 osCanvas.height = 400;
 
-
-
 function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color ){
     ctx.fillStyle = color;
     ctx.beginPath();
@@ -68,9 +66,6 @@ var Piechart = function(options){
 
     }
 }
-
-
-
 
 function makeBrowserPie() {
     var xmlhttp = new XMLHttpRequest();
