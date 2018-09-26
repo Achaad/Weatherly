@@ -15,11 +15,20 @@ osCanvas.height = 400;
 
 
 
-var myVinyls = {
-    "Classical music": 10,
-    "Alternative rock": 14,
-    "Pop": 2,
-    "Jazz": 12
+var browsers = {
+    "Chrome": 10,
+    "Firefox": 14,
+    "Safari": 2,
+    "Unknown": 12
+};
+
+var operationSystems = {
+    "Windows": 1,
+    "Mac": 1,
+    "Unix": 2,
+    "Android": 3,
+    "IPhone": 1,
+    "Unknown": 4
 };
 
 function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color ){
@@ -81,8 +90,8 @@ var Piechart = function(options){
 var browserPieChart = new Piechart(
     {
         canvas:browserCanvas,
-        data:myVinyls,
-        colors:["#fde23e","#f16e23", "#57d9ff","#937e88"],
+        data:browsers,
+        colors:["#fde23e","#bf80ff", "#1aff1a","#ffcc00", "#660066", "#e60000"],
         legend:browserLegend
     }
 );
@@ -90,8 +99,8 @@ var browserPieChart = new Piechart(
 var osPieChart = new Piechart(
     {
         canvas:osCanvas,
-        data:myVinyls,
-        colors:["#fde23e","#f16e23", "#57d9ff","#937e88"],
+        data:operationSystems,
+        colors:["#33adff","#f16e23", "#57d9ff","#937e88", ],
         legend:osLegend
     }
 );
