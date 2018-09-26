@@ -52,6 +52,8 @@ public class Weather {
 
             xml = new XML(new URL("https://weather.cit.api.here.com/weather/1.0/report.xml?product=observation&latitude=" + latitude + "&longitude=" + longitude + "&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg"));
 
+
+           // System.out.println("https://weather.cit.api.here.com/weather/1.0/report.xml?product=observation&latitude=" + latitude + "&longitude=" + longitude + "&oneobservation=true&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg");
             weatherState = xml.getUnNestedTagContent("description");
             temp = Double.parseDouble(xml.getUnNestedTagContent("temperature"));
             windSpeed = Double.parseDouble(xml.getUnNestedTagContent("windSpeed"));
