@@ -37,6 +37,7 @@ public class IndexController {
     private Boolean mobile;
 
 
+
     @GetMapping("/")
     public String homePage(Model model, HttpServletRequest servletRequest) {
 
@@ -76,15 +77,6 @@ public class IndexController {
 
         return "index";    //vajalik pannab HTML faili nimi
     }
-
-
-
-    @GetMapping("/stats")
-    public @ResponseBody Iterable<Statistics> getAllStats() {
-        // This returns a JSON or XML with the statistics
-        return statisticsRepository.findAll();
-    }
-
 
 
 
