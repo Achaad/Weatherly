@@ -8,7 +8,7 @@ public class Location {
     private String ipAadress;
 
 
-    private String API_KEY = "ENTER_KEY_HERE";
+    private String API_KEY = "389c528940c93f77df3188db4102d580";
     private String apiAadress = "http://api.ipstack.com/";
 
     private XML xml;
