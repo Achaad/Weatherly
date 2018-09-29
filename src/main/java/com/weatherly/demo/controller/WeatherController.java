@@ -10,12 +10,21 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class WeatherController {
 
-    @GetMapping("/tartuweather")
-    public @ResponseBody Weather getWeather( ) {
-        // This returns a JSON or XML with the statistics
-        Location location = new Location("Estonia", "Tartumaa", "Tartu");
 
-        return new Weather(location);
+    // Weather API to be redirected to ... (Might have to change responsebody)
+    // http://localhost:8080/weather?country=Estonia&regionName=Tartumaa&city=Tartu
+
+    @GetMapping(path="/weather") // Map ONLY GET Requests
+    @ResponseBody
+    public String addNewUser (@RequestParam String country
+            , @RequestParam String regionName, @RequestParam String city) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        Location location = new Location(country, regionName, city);
+        Weather weather = new Weather(location);
+
+        return weather.toString();
     }
 
 }
