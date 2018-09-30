@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilt
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.filter.CompositeFilter;
 
 import javax.servlet.Filter;
@@ -95,11 +96,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable().antMatcher("/**").addFilterBefore(ssoFilter(),
+    http.antMatcher("/**").addFilterBefore(ssoFilter(),
         BasicAuthenticationFilter.class)
         .authorizeRequests()
           .antMatchers("/user").authenticated()
         .and().authorizeRequests().anyRequest().permitAll()
-          .and().formLogin().loginPage("/login");
+          .and().formLogin().loginPage("/login").and().logout().logoutSuccessUrl("/").permitAll().and()
+        .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
   }
 }
