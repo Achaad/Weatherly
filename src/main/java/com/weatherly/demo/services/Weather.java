@@ -65,20 +65,13 @@ public class Weather {
         }
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-
     public double getTemp() {
         return temp;
     }
 
-
     public double getWindSpeed() {
         return windSpeed;
     }
-
 
     public String getWeatherState() {
         return weatherState;
