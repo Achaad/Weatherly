@@ -1,7 +1,9 @@
 package com.weatherly.demo.repositories;
 
 import com.weatherly.demo.entities.Statistics;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -24,5 +26,14 @@ public interface StatisticsRepository extends CrudRepository<Statistics, Integer
 
 
     int countByOs(String os);
+
+
+    //Võte aggregeeritud andmete esitamine
+    @Query(value = "SELECT * FROM statistics WHERE os='Windows' GROUP BY id", nativeQuery = true)
+    List<Statistics> aggregeeritudVote();
+
+    //Võte JOIN
+    @Query(value = "SELECT statistics.browser, dummy.description FROM statistics JOIN dummy ON statistics.browser = dummy.browser_name", nativeQuery = true)
+    List<Object> joinVote();
 
 }
