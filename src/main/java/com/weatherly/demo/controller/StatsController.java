@@ -3,12 +3,15 @@ package com.weatherly.demo.controller;
 
 import com.weatherly.demo.entities.BrowserData;
 import com.weatherly.demo.entities.OsData;
+import com.weatherly.demo.entities.Statistics;
 import com.weatherly.demo.repositories.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class StatsController {
@@ -27,6 +30,12 @@ public class StatsController {
 
 
         return "stats";
+    }
+
+    @GetMapping("/data/aggregated")
+    @ResponseBody
+    public List<Statistics> getAggregated (){
+        return statisticsRepository.aggregeeritudVote();
     }
 
 
