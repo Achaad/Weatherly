@@ -102,6 +102,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
           .antMatchers("/user").authenticated()
         .and().authorizeRequests().anyRequest().permitAll()
           .and().formLogin().loginPage("/login").and().logout().logoutSuccessUrl("/").permitAll().and()
-        .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        .csrf().disable();
   }
 }
