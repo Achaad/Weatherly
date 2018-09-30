@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org">
 
 
 
@@ -8,9 +8,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>Starter Template - Materialize</title>
-
+    <title th:utext="#{websitestatistics}">Website statistics</title>
     <!-- CSS  -->
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -20,28 +20,23 @@
 
 
 <body>
-
-
     <nav class="light-blue lighten-1" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Weatherly</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/">Home</a></li>
+                <li><a href="/" th:utext="#{home}">Home</a></li>
             </ul>
-
             <ul id="nav-mobile" class="sidenav">
-                <li><a href="/">Home</a></li>
+                <li><a href="/" th:utext="#{home}">Home</a></li>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
     </nav>
 
 
-
-
     <div class="container">
 
         <div class="row center">
-            <h3>Website Statistics</h3>
+            <h3 th:utext="#{websitestatistics}"></h3>
         </div>
 
         <br><br>
@@ -59,6 +54,5 @@
 
     <!--  Scripts-->
     <script type="text/javascript" th:src="@{/js/pieChart.js}"></script>
-
 </body>
 </html>

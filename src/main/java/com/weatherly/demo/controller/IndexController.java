@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -35,7 +36,7 @@ public class IndexController {
 
 
 
-    @GetMapping("/")
+    @GetMapping(value = {"/","/index"})
     public String homePage(Model model, HttpServletRequest servletRequest) {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
@@ -70,8 +71,7 @@ public class IndexController {
 
         statisticsRepository.save(s);
 
-
-        return "index";    //vajalik pannab HTML faili nimi
+        return "index";
     }
 
 
