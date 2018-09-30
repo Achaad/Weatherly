@@ -1,7 +1,9 @@
 package com.weatherly.demo.controller;
 
 
+import com.weatherly.demo.entities.Dummy;
 import com.weatherly.demo.entities.Statistics;
+import com.weatherly.demo.repositories.DummyRepository;
 import com.weatherly.demo.repositories.StatisticsRepository;
 import com.weatherly.demo.services.Location;
 import com.weatherly.demo.services.Weather;
@@ -27,6 +29,8 @@ public class IndexController {
 
 
 
+
+
     private String os = "";
     private String visitTime = "";
     private String ipAddress = "";
@@ -46,6 +50,7 @@ public class IndexController {
         this.visitTime = dateFormat.format(Calendar.getInstance().getTime());
 
         Statistics s = new Statistics();
+
         s.setIp(ipAddress);
         try {
 
@@ -60,6 +65,7 @@ public class IndexController {
 
 
 
+
         //Get LAT/LONG based on IP.
         location = new Location(ipAddress);
         Weather weather = new Weather(location.getLatitude(), location.getLongitude());
@@ -69,6 +75,7 @@ public class IndexController {
 
 
         statisticsRepository.save(s);
+
 
 
         return "index";    //vajalik pannab HTML faili nimi

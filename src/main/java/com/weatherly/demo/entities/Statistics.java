@@ -1,15 +1,15 @@
 package com.weatherly.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  *  Entity class that represents Statistics table
  */
 @Entity
+@Table(name="statistics")
 public class Statistics {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
