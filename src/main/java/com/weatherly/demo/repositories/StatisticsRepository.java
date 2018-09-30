@@ -32,4 +32,8 @@ public interface StatisticsRepository extends CrudRepository<Statistics, Integer
     @Query(value = "SELECT * FROM statistics WHERE os='Windows' GROUP BY id", nativeQuery = true)
     List<Statistics> aggregeeritudVote();
 
+    //Võte JOIN
+    @Query(value = "SELECT statistics.browser, dummy.description FROM statistics JOIN dummy ON statistics.browser = dummy.browser_name", nativeQuery = true)
+    List<Object> joinVote();
+
 }
