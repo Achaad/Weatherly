@@ -1,6 +1,5 @@
 
 
-
 var browserCanvas = document.getElementById("browserCanvas");
 var osCanvas = document.getElementById("osCanvas");
 var browserLegend = document.getElementById("browserLegend");
