@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+  <meta name="google-signin-client_id" content="942225310522-2hd4mnq3qaq9asnsi958qsjsr0q1c0cn.apps.googleusercontent.com ">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <meta name="description" content="Free weather info for specific locations">
+
+  <meta name="description" content="Free weather info for searchable locations all over the globe.">
+  <meta name="keywords" content="Weather, Location, precipitation, Data, rain, clouds">
+  <meta name="author" content="John Doe">
   <title>Weatherly</title>
 
   <!-- CSS  -->
@@ -13,25 +17,24 @@
   <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
-
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Weatherly</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="stats">Statistics</a></li>
-        <li><a href="stats">Link 2</a> </li>
-        <li><a href="stats">Link 3</a> </li>
-        <li><a href="stats">Link 4</a> </li>
+
+        <li><a th:href="stats" th:utext="#{statistics}"></a></li>
+        <li><a th:href="@{/index?lang=et}">Eesti Keel</a> </li>
+        <li><a th:href="@{/index?lang=en}">English</a> </li>
+        <li><a href="user">User</a></li>
       </ul>
 
+
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="stats">Statistics</a></li>
+        <li th:utext="#{statistics}"><a th:href="stats"></a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
-
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
@@ -46,7 +49,7 @@
 
 
       <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        <h5 class="header col s12 light" th:utext="#{building}"></h5>
       </div>
       <div class="row center">
         <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
@@ -104,7 +107,7 @@
 
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text" th:utext="#{l.settings}">Settings</h5>
           <ul>
             <li><a class="white-text" href="#!">Link 1</a></li>
             <li><a class="white-text" href="#!">Link 2</a></li>
@@ -113,7 +116,7 @@
           </ul>
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
+          <h5 class="white-text" th:utext="#{connect}">Connect</h5>
           <ul>
             <li><a class="white-text" href="#!">Link 1</a></li>
             <li><a class="white-text" href="#!">Link 2</a></li>
@@ -136,7 +139,7 @@
   <script type="text/javascript" th:src="@{/js/https://code.jquery.com/jquery-2.1.1.min.js.js}"></script>
   <script type="text/javascript" th:src="@{/js/materialize.js}"></script>
   <script type="text/javascript" th:src="@{/js/init.js}"></script>
-
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   </body>
 </html>
