@@ -117,5 +117,17 @@ function makeOsPie() {
 }
 
 
-makeBrowserPie();
-makeOsPie();
+
+    if(window.onload) {
+        var curronload = window.onload;
+        var newonload = function(evt) {
+            curronload(evt);
+            makeBrowserPie(evt);
+            makeOsPie(evt);
+        };
+        window.onload = newonload;
+    } else {
+        window.onload = makeOsPie();
+        window.onload = makeBrowserPie();
+    }
+

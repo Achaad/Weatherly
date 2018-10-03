@@ -64,7 +64,7 @@ public class IndexController {
 
 
         //Get LAT/LONG based on IP.
-        location = new Location("193.40.13.164");
+        location = new Location(this.ipAddress);
         Weather weather = new Weather(location.getLatitude(), location.getLongitude());
 
         model.addAttribute("location", location.toString());
