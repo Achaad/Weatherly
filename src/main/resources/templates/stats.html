@@ -3,38 +3,17 @@
 <html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org">
 
 
-
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <meta name="description" content="Visual representation of users visiting Weatherly">
-    <meta name="keywords" content="Weather, Location, precipitation, Data">
-    <meta name="author" content="Weatherly">
+    <th:block th:include="fragments/head"/>
     <title th:utext="#{websitestatistics}">Website statistics</title>
-
-    <!-- CSS  -->
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
 
 
 
 <body>
-    <nav class="light-blue lighten-1" role="navigation">
-        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Weatherly</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/" th:utext="#{home}">Home</a></li>
-            </ul>
-            <ul id="nav-mobile" class="sidenav">
-                <li><a href="/" th:utext="#{home}">Home</a></li>
-            </ul>
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        </div>
-    </nav>
+
+    <th:block th:replace="fragments/navigation"/>
 
 
     <div class="container">
@@ -52,8 +31,6 @@
         <div class="row right" id="osLegend"></div>
 
     </div>
-
-
 
 
     <!--  Scripts-->

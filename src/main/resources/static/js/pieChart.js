@@ -1,6 +1,5 @@
 
 
-
 var browserCanvas = document.getElementById("browserCanvas");
 var osCanvas = document.getElementById("osCanvas");
 var browserLegend = document.getElementById("browserLegend");
@@ -118,5 +117,17 @@ function makeOsPie() {
 }
 
 
-makeBrowserPie();
-makeOsPie();
+
+    if(window.onload) {
+        var curronload = window.onload;
+        var newonload = function(evt) {
+            curronload(evt);
+            makeBrowserPie(evt);
+            makeOsPie(evt);
+        };
+        window.onload = newonload;
+    } else {
+        window.onload = makeOsPie();
+        window.onload = makeBrowserPie();
+    }
+
