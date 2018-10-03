@@ -33,12 +33,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-aop')
     compile('org.springframework.boot:spring-boot-starter-cache')
 
+
     // OAuth2 dependencies
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.security.oauth:spring-security-oauth2')
     compile('org.springframework.cloud:spring-cloud-security:2.0.0.RELEASE')
     compile('org.webjars:js-cookie:2.1.0')
-
 
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile ('mysql:mysql-connector-java')  // MySQL connector
