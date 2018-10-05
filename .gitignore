@@ -123,3 +123,5 @@ gradle
 gradlew
 gradlew.bat
 settings.gradle
+
+application.properties
