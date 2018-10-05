@@ -24,18 +24,18 @@
         <div class="row center">
             <h5 th:text="${location}"></h5>
         </div>
-
-
-      <div class="row center">
-        <h5 class="header col s12 light" th:utext="#{building}"></h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>
-      <br><br>
-
     </div>
   </div>
+        <br><br>
+
+
+    <form class=" hide-on-med-and-down" id="searchBar" >
+      <div class="input-field row center" style="max-width: 400pt;">
+        <input id="search" type="text" placeholder="Country,Region,City">
+          <input class="btn-small waves-effect waves-light light-blue" type="submit" value="Search" onclick="getWeather()">
+      </div>
+    </form>
+
 
 
     <br><br>
@@ -53,7 +53,7 @@
 
   <script type="text/javascript" th:src="@{/js/https://code.jquery.com/jquery-2.1.1.min.js.js}"></script>
   <script type="text/javascript" th:src="@{/js/materialize.js}"></script>
-  <script type="text/javascript" th:src="@{/js/init.js}"></script>
+  <script type="text/javascript" th:src="@{/js/index.js}"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   </body>
