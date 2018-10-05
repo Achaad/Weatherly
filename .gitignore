@@ -118,10 +118,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-src/main/resources/application.yml
+src/main/resources/application.properties
 gradle
 gradlew
 gradlew.bat
 settings.gradle
-
-application.properties
