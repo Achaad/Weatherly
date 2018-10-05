@@ -2,14 +2,14 @@ package com.weatherly.demo.entities;
 
 public class OsData {
 
-    private int Windows;
-    private int Mac;
-    private int Linux;
-    private int Android;
-    private int IPhone;
-    private int Unknown;
+    private Integer Windows;
+    private Integer Mac;
+    private Integer Linux;
+    private Integer Android;
+    private Integer IPhone;
+    private Integer Unknown;
 
-    public OsData(int windows, int mac, int linux, int android, int IPhone, int unknown) {
+    public OsData(Integer windows, Integer mac, Integer linux, Integer android, Integer IPhone, Integer unknown) {
         Windows = windows;
         Mac = mac;
         Linux = linux;
@@ -18,52 +18,57 @@ public class OsData {
         Unknown = unknown;
     }
 
-
-    public int getWindows() {
+    public Integer getWindows() {
         return Windows;
     }
 
-    public void setWindows(int windows) {
+    public void setWindows(Integer windows) {
         Windows = windows;
     }
 
-    public int getMac() {
+    public Integer getMac() {
         return Mac;
     }
 
-    public void setMac(int mac) {
+    public void setMac(Integer mac) {
         Mac = mac;
     }
 
-    public int getLinux() {
+    public Integer getLinux() {
         return Linux;
     }
 
-    public void setLinux(int linux) {
+    public void setLinux(Integer linux) {
         Linux = linux;
     }
 
-    public int getAndroid() {
+    public Integer getAndroid() {
         return Android;
     }
 
-    public void setAndroid(int android) {
+    public void setAndroid(Integer android) {
         Android = android;
     }
 
-    public int getIPhone() {
+    public Integer getIPhone() {
         return IPhone;
     }
 
-    public void setIPhone(int IPhone) {
+    public void setIPhone(Integer IPhone) {
         this.IPhone = IPhone;
     }
 
-    public int getUnknown() {
+    public Integer getUnknown() {
         return Unknown;
     }
 
-    public void setUnknown(int unknown) {
+    public void setUnknown(Integer unknown) {
         Unknown = unknown;
     }
+
+
+
+
+
+
 }
