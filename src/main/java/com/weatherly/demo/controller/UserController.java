@@ -1,11 +1,11 @@
 package com.weatherly.demo.controller;
 
+<<<<<<< HEAD
 import com.weatherly.demo.services.MailSender;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.MessageFormat;
