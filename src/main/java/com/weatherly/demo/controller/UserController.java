@@ -1,6 +1,5 @@
 package com.weatherly.demo.controller;
 
-<<<<<<< HEAD
 import com.weatherly.demo.services.MailSender;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
