@@ -1,14 +1,14 @@
 
 function getWeather(){
 
-    var result = document.getElementById("search").value;
 
-    var parts = result.split(",");
+    var searchBar = document.getElementById("search");
 
-    alert(parts + " length: " + parts.length);
+    var parts = searchBar.value.split(",");
+
 
     if(parts.length != 3)
-        alert("Sisend vales formaadis.")
+        searchBar.placeholder = "Vales formaadis sisend!"
     else
         window.location.href = "http://localhost:8080/data/weather?country=" + parts[0] + "&regionName=" + parts[1] + "&city=" + parts[2];
 
