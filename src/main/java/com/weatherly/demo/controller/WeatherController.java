@@ -5,6 +5,7 @@ import com.weatherly.demo.entities.Statistics;
 import com.weatherly.demo.services.Location;
 import com.weatherly.demo.services.Weather;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -15,16 +16,14 @@ public class WeatherController {
     // http://localhost:8080/weather?country=Estonia&regionName=Tartumaa&city=Tartu
 
     @GetMapping(path="/data/weather") // Map ONLY GET Requests
-    @ResponseBody
-    public Weather addNewUser (@RequestParam String country
+    public String weatherPage (Model model, @RequestParam String country
             , @RequestParam String regionName, @RequestParam String city) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
 
         Location location = new Location(country, regionName, city);
         Weather weather = new Weather(location);
+        model.addAttribute("weather", weather);
 
-        return weather;
+        return "weather";
     }
 
 }
