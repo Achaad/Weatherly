@@ -28,11 +28,11 @@
   </div>
         <br><br>
 
-
+<!--     value="Search"  th:utext='#{search}'-->
     <form class=" hide-on-med-and-down" id="searchBar" >
       <div class="input-field row center" style="max-width: 400pt;">
         <input id="search" type="text" placeholder="Country,Region,City">
-          <input class="btn-small waves-effect waves-light light-blue" type="submit" value="Search" onclick="getWeather()">
+          <input class="btn-small waves-effect waves-light light-blue" type="reset" th:value="#{search}"  onclick="getWeather()">
       </div>
     </form>
 
