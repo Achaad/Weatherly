@@ -41,7 +41,8 @@ dependencies {
     compile('org.webjars:js-cookie:2.1.0')
 
     // mail dependency
-    compile('javax.mail:mail:1.4.7')
+    // compile('javax.mail:mail:1.4.7')
+    compile('org.springframework.boot:spring-boot-starter-mail')
 
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile ('mysql:mysql-connector-java')  // MySQL connector
