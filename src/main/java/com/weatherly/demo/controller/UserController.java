@@ -36,11 +36,11 @@ public class UserController {
     String visitTime = dateFormat.format(Calendar.getInstance().getTime());
     String subject = "Login";
 
-    MessageFormat format = new MessageFormat("Hello {0},\n" +
-        "We have noticed that You have accessed our webpage on {1} from this ip: {2}. If it was " +
-        "not You, please contact us at weatherly.me@gmail.com");
-    format.format(userName, visitTime, ipAddress);
-    mailSender.sendSimpleMessage(userMail, subject, format.toString());
+    String message = "Hello " + userName + ",\n" +
+        "We have noticed that You have accessed our webpage on " + visitTime + " from this ip: " +
+        ipAddress + ". If it was " +
+        "not You, please contact us at weatherly.me@gmail.com";
+    mailSender.sendSimpleMessage(userMail, subject, message);
 
     return "user";
   }
