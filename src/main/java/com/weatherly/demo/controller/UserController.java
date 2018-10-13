@@ -34,7 +34,7 @@ public class UserController {
     String ipAddress = servletRequest.getHeader("x-real-ip"); //Returns IP Address
     String visitTime = dateFormat.format(Calendar.getInstance().getTime());
     String subject = "Login";
-    
+
     MessageFormat format = new MessageFormat("Hello {0},\n" +
         "We have noticed that You have accessed our webpage on {1} from this ip: {2}. If it was " +
         "not You, please contact us at weatherly.me@gmail.com");
