@@ -3,47 +3,51 @@ package com.weatherly.demo.entities;
 public class BrowserData {
 
 
-    private  int Chrome;
-    private  int Safari;
-    private  int FireFox;
-    private  int Other;
+    private  Integer Chrome;
+    private  Integer Safari;
+    private  Integer FireFox;
+    private  Integer Other;
 
-    public BrowserData(int Chrome, int Safari, int FireFox, int Other){
+    public BrowserData(Integer Chrome, Integer Safari, Integer FireFox, Integer Other){
         this.Chrome = Chrome;
         this.Safari = Safari;
         this.FireFox = FireFox;
         this.Other = Other;
     }
 
-    public int getChrome() {
+
+    public Integer getChrome() {
         return Chrome;
     }
 
-    public void setChrome(int chrome) {
+    public void setChrome(Integer chrome) {
         Chrome = chrome;
     }
 
-    public int getSafari() {
+    public Integer getSafari() {
         return Safari;
     }
 
-    public void setSafari(int safari) {
+    public void setSafari(Integer safari) {
         Safari = safari;
     }
 
-    public int getFireFox() {
+    public Integer getFireFox() {
         return FireFox;
     }
 
-    public void setFireFox(int fireFox) {
+    public void setFireFox(Integer fireFox) {
         FireFox = fireFox;
     }
 
-    public int getOther() {
+    public Integer getOther() {
         return Other;
     }
 
-    public void setOther(int other) {
+    public void setOther(Integer other) {
         Other = other;
     }
+
+
+
 }
