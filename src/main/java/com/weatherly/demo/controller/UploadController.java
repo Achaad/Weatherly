@@ -29,15 +29,13 @@ public class UploadController {
         }
         String nimi = file.getOriginalFilename();
         String extension = nimi.substring(nimi.lastIndexOf("."));
-        System.out.println(extension);
         if(!extension.equals(".jpg") && !extension.equals(".png") && !extension.equals(".gif")){
             redirectAttributes.addFlashAttribute("message", "File is of wrong type, please try again");
             return "redirect:uploadStatus";
         }
         try {
             // Get the file and save it somewhere
-            System.out.println(nimi);
-            Path path = Paths.get(UPLOADED_FOLDER + nimi.substring(nimi.lastIndexOf("\\")));
+            Path path = Paths.get(UPLOADED_FOLDER + nimi.substring(nimi.lastIndexOf("/")));
             file.transferTo(path.toFile());
 
             redirectAttributes.addFlashAttribute("message",
