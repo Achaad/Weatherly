@@ -116,6 +116,7 @@ function makeOsPie() {
     xmlhttp.send();
 }
 
+
 //Võte, leheosade hilisem laadimine
 document.addEventListener("DOMContentLoaded", function(event) {
     makeBrowserPie();
