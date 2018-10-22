@@ -67,9 +67,6 @@ public class IndexController {
         model.addAttribute("location", location.toString());
         model.addAttribute("weather", weather.toString());
 
-        if(weather.getWeatherState().contains("clear"))
-            model.addAttribute("background", "images/cloudy.jpeg");
-
 
         statisticsRepository.save(s);
 
