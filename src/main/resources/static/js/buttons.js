@@ -3,5 +3,6 @@ $(document).ready(function() {
 
 });
 
+
 //Javascript implementation for buttons that require activation function for whole website.
 //For example navbar language button
