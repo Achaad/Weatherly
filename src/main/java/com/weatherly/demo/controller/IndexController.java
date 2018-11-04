@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Null;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,6 +41,7 @@ public class IndexController {
 
         this.ipAddress = servletRequest.getHeader("x-real-ip"); //Returns IP Address
         //this.ipAddress = "193.40.12.10"; // TODO: Revert back for deployment
+      
         parseHeaderAgent(servletRequest.getHeader("User-Agent"));
         this.visitTime = dateFormat.format(Calendar.getInstance().getTime());
 
@@ -61,14 +63,13 @@ public class IndexController {
 
 
         //Get LAT/LONG based on IP.
-        location = new Location(this.ipAddress);
-        Weather weather = new Weather(location.getLatitude(), location.getLongitude());
 
-        model.addAttribute("location", location.toString());
-        model.addAttribute("weather", weather.toString());
+            location = new Location(this.ipAddress);
+            Weather weather = new Weather(location.getLatitude(), location.getLongitude());
 
-
-        statisticsRepository.save(s);
+            model.addAttribute("location", location.toString());
+            model.addAttribute("weather", weather.toString());
+            statisticsRepository.save(s);
 
         return "index";    //vajalik pannab HTML faili nimi
     }
