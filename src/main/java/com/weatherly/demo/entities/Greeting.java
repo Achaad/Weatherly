@@ -3,6 +3,7 @@ package com.weatherly.demo.entities;
 public class Greeting {
 
 
+        // Payload definition for webchat
 
         private String content;
 
