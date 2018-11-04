@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Weatherly - WebChat</title>
+    <th:block th:include="fragments/head"/>
+</head>
+
+
+<body>
+
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2>
+</noscript>
+
+<th:block th:replace="fragments/navigation"/>
+
+<br><br>
+<br><br>
+<br><br>
+
+<div id="main-content" class="container" align="center">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="connect">Chat Connection:</label>
+                    <button id="connect" class="btn btn-default" type="submit">Connect</button>
+                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" id="message" class="form-control" placeholder="Enter your message...">
+                </div>
+                <button id="send" class="btn btn-default" type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Chat Log: </th>
+                </tr>
+                </thead>
+                <tbody id="greetings">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script type="text/javascript" th:src="@{/js/chat.js}"></script>
+
+
+</body>
+</html>
