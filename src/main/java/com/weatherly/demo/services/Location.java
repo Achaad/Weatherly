@@ -1,5 +1,6 @@
 package com.weatherly.demo.services;
 
+import javax.validation.constraints.Null;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -31,6 +32,7 @@ public class Location {
     }
     //Konstruktor, mis võtab andmed IP aadressi järgi
     public Location(String ipAadress) {
+
         this.ipAadress = ipAadress;
 
         try {
@@ -45,10 +47,14 @@ public class Location {
 
             city = xml.getUnNestedTagContent("city");
 
-
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            longitude = "25.038807";
+            latitude = "58.375606";
+            country = "Offline land";
+            regionName = "Offline Region";
+            city = "Offline City";
         }
 
     }

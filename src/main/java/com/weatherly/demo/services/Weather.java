@@ -27,8 +27,6 @@ public class Weather {
     private String windDirection; // tuulesuund
     private String precipitation; // sademed
 
-
-
     public Weather(Location location) {
 
         this.location = location;
@@ -62,6 +60,12 @@ public class Weather {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            weatherState = "tundmatu";
+            temp = 0;
+            windSpeed = 0;
+            windDirection = "tundmatu";
+            precipitation = "tundmatu";
         }
     }
 
