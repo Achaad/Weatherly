@@ -1,0 +1,14 @@
+CACHE MANIFEST
+
+CACHE:
+index
+login
+stats
+UserPolicy
+
+
+NETWORK:
+*
+
+FALLBACK:
+/ /offline.html
