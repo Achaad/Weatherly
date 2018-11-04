@@ -21,7 +21,12 @@ public class WeatherController {
 
         Location location = new Location(country, regionName, city);
         Weather weather = new Weather(location);
-        model.addAttribute("weather", weather);
+
+        model.addAttribute("weatherState", weather.getWeatherState());
+        model.addAttribute("precipitation",  weather.getPrecipitation());
+        model.addAttribute("temperature", weather.getTemp());
+        model.addAttribute("windDirection", weather.getWindDirection());
+        model.addAttribute("windSpeed", weather.getWindSpeed());
 
         return "weather";
     }
