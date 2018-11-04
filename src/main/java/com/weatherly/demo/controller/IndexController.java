@@ -1,9 +1,7 @@
 package com.weatherly.demo.controller;
 
 
-import com.weatherly.demo.entities.Dummy;
 import com.weatherly.demo.entities.Statistics;
-import com.weatherly.demo.repositories.DummyRepository;
 import com.weatherly.demo.repositories.StatisticsRepository;
 import com.weatherly.demo.services.Location;
 import com.weatherly.demo.services.Weather;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Null;
@@ -42,8 +39,9 @@ public class IndexController {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
 
-        this.ipAddress = "90.191.163.192"; //Returns IP Address
-      //  this.ipAddress = "193.40.12.10"; // TODO: Revert back for deployment
+        this.ipAddress = servletRequest.getHeader("x-real-ip"); //Returns IP Address
+        //this.ipAddress = "193.40.12.10"; // TODO: Revert back for deployment
+      
         parseHeaderAgent(servletRequest.getHeader("User-Agent"));
         this.visitTime = dateFormat.format(Calendar.getInstance().getTime());
 

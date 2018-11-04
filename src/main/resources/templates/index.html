@@ -4,9 +4,12 @@
 <head>
     <title>Weatherly</title>
     <th:block th:include="fragments/head"/>
+
 </head>
 
 <body>
+
+<!-- style="background-image: url(../images/cloudy.jpeg);" -->
 
 <th:block th:replace="fragments/navigation"/>
 
@@ -51,7 +54,6 @@
 
   <!--  Scripts-->
 
-  <script type="text/javascript" th:src="@{/js/https://code.jquery.com/jquery-2.1.1.min.js.js}"></script>
   <script type="text/javascript" th:src="@{/js/materialize.js}"></script>
   <script type="text/javascript" th:src="@{/js/index.js}"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
