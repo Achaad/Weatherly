@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org" manifest="offline.manifest">
+<html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org" manifest="offline.appcache">
 
 <head>
     <title>Weatherly</title>
@@ -51,10 +51,9 @@
 
   <!--  Scripts-->
 
-  <script type="text/javascript" th:src="@{/js/https://code.jquery.com/jquery-2.1.1.min.js.js}"></script>
   <script type="text/javascript" th:src="@{/js/materialize.js}"></script>
   <script type="text/javascript" th:src="@{/js/index.js}"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script tpye="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
 
   </body>
 </html>
