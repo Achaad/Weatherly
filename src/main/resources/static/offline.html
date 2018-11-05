@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org" manifest="offline.appcache">
-<head>
-    <meta charset="UTF-8">
 
+<head>
+    <title>Weatherly - Offline</title>
     <th:block th:include="fragments/head"/>
-    <title>Title</title>
 </head>
+
+
 <body>
 <th:block th:replace="fragments/navigation"/>
-<div th:if="${message}">
-    <br>
-    <br>
-    <br>
-    <h6 th:text="${message}"/>
-    <br>
-    <br>
-    <br>
+
+<div>
+    <p>This page is offline. Connect to internet, please</p>
 </div>
-<th:block th:replace="fragments/footer"/>
 </body>
 </html>
