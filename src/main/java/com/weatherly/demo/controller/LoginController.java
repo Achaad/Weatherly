@@ -1,5 +1,6 @@
 package com.weatherly.demo.controller;
 
+import com.weatherly.demo.entities.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

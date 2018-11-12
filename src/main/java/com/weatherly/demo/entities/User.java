@@ -13,6 +13,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private Integer userId; // Id that is given to user by service (Google, Facebook etc.)
+
     private String firstName;
 
     private String lastName;
@@ -70,5 +72,13 @@ public class User {
 
     public void setLocations(List<String> locations) {
         this.locations = locations;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

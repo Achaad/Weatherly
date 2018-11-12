@@ -11,4 +11,8 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Query(value = "SELECT locations FROM user WHERE id = :userId", nativeQuery = true)
     List<String> findLocationsById(@Param("userId") Integer userId);
+
+    List<User> findAllByUserId(Integer id);
+
+    User findByUserId(Integer id);
 }
