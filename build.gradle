@@ -43,6 +43,7 @@ dependencies {
     compile('org.springframework.security.oauth:spring-security-oauth2')
     compile('org.springframework.cloud:spring-cloud-security:2.0.0.RELEASE')
     compile('org.webjars:js-cookie:2.1.0')
+    compile('javassist:javassist:3.12.1.GA')
 
     // mail dependency
     // compile('javax.mail:mail:1.4.7')
