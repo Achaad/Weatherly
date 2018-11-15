@@ -4,11 +4,17 @@ import com.weatherly.demo.entities.User;
 import com.weatherly.demo.repositories.UserRepository;
 import com.weatherly.demo.services.MailSender;
 import com.weatherly.demo.services.MailSenderImpl;
+import com.weatherly.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.MessageFormat;
@@ -21,12 +27,24 @@ import java.util.Locale;
 @Controller
 public class UserController {
 
+  final UserService userService;
+
+  @Autowired
+  UserController(UserService userService) {
+    this.userService = userService;
+  }
+
   @Autowired
   private MailSender mailSender;
 
   @Autowired
   private UserRepository userRepository;
 
+  @RequestMapping(value = "/user", method = RequestMethod.GET)
+  Page<User> list(Pageable pageable) {
+    Page<User> users = userService.listAllByPage(pageable);
+    return users;
+  }
 
   @GetMapping("/user")
   public String homePage(Model model, OAuth2Authentication authentication, HttpServletRequest servletRequest) {
