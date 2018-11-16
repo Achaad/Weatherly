@@ -68,7 +68,7 @@ public class UserController {
     // Adds user to the table if he is not present there
     if (userRepository.findAllByUserId(userId).size() == 0) {
       user.setUserId(userId);
-      user.setFirstName(userDetails.get("given-name"));
+      user.setFirstName(userDetails.get("given_name"));
       user.setLastName(userDetails.get("family_name"));
       user.setFullName(userName);
       user.setMail(userMail);
