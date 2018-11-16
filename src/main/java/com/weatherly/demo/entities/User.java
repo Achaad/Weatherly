@@ -10,10 +10,11 @@ import java.util.List;
 @Table(name="user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer userId; // Id that is given to user by service (Google, Facebook etc.)
+    @Column
+    private String userId; // Id that is given to user by service (Google, Facebook etc.)
 
     private String firstName;
 
@@ -74,11 +75,11 @@ public class User {
         this.locations = locations;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

@@ -40,7 +40,8 @@ public class UserController {
   @Autowired
   private UserRepository userRepository;
 
-  @RequestMapping(value = "/user", method = RequestMethod.GET)
+
+  @RequestMapping(value = "/users", method = RequestMethod.GET)
   Page<User> list(Pageable pageable) {
     Page<User> users = userService.listAllByPage(pageable);
     return users;
@@ -56,7 +57,7 @@ public class UserController {
         (LinkedHashMap<String, String>) authentication.getUserAuthentication().getDetails();
     String userMail = userDetails.get("email");
     String userName = userDetails.get("name");
-    Integer userId = Integer.parseInt(userDetails.get("id"));
+    String userId = userDetails.get("id");
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
     String ipAddress = servletRequest.getHeader("x-real-ip"); //Returns IP Address
     String visitTime = dateFormat.format(Calendar.getInstance().getTime());
@@ -65,7 +66,7 @@ public class UserController {
     User user = new User();
 
     // Adds user to the table if he is not present there
-    if (userRepository.findAllByUserId(userId) == null) {
+    if (userRepository.findAllByUserId(userId).size() == 0) {
       user.setUserId(userId);
       user.setFirstName(userDetails.get("given-name"));
       user.setLastName(userDetails.get("family_name"));
@@ -75,7 +76,9 @@ public class UserController {
       user = userRepository.findByUserId(userId);
     }
 
-    userLocations = user.getLocations();
+    //userLocations = user.getLocations();
+    userRepository.save(user);
+
 
     String message = "Hello " + userName + ",\n" +
         "We have noticed that You have accessed our webpage on " + visitTime + " from this ip: " +
