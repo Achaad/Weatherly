@@ -1,19 +1,23 @@
 package com.weatherly.demo.controller;
 
 import com.weatherly.demo.entities.User;
+import com.weatherly.demo.entities.UserLocation;
 import com.weatherly.demo.repositories.UserRepository;
 import com.weatherly.demo.services.MailSender;
 import com.weatherly.demo.services.MailSenderImpl;
 import com.weatherly.demo.services.UserService;
+import com.weatherly.demo.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -40,12 +44,8 @@ public class UserController {
   @Autowired
   private UserRepository userRepository;
 
+  private User user = new User();
 
-  @RequestMapping(value = "/users", method = RequestMethod.GET)
-  Page<User> list(Pageable pageable) {
-    Page<User> users = userService.listAllByPage(pageable);
-    return users;
-  }
 
   @GetMapping("/user")
   public String homePage(Model model, OAuth2Authentication authentication, HttpServletRequest servletRequest) {
@@ -63,7 +63,7 @@ public class UserController {
     String visitTime = dateFormat.format(Calendar.getInstance().getTime());
     String subject = "Login";
 
-    User user = new User();
+
 
     // Adds user to the table if he is not present there
     if (userRepository.findAllByUserId(userId).size() == 0) {
@@ -76,8 +76,8 @@ public class UserController {
       user = userRepository.findByUserId(userId);
     }
 
-    //userLocations = user.getLocations();
     userRepository.save(user);
+
 
 
     String message = "Hello " + userName + ",\n" +
@@ -86,8 +86,33 @@ public class UserController {
         "not You, please contact us at weatherly.me@gmail.com";
     mailSender.sendSimpleMessage(userMail, subject, message);
 
-
-
     return "user";
   }
+
+
+
+  @PostMapping(value = "/user/submitLocation")
+  public String uploadLocation(@RequestParam("userLocation") String location, RedirectAttributes redirectAttributes) {
+    user.addLoaction(new UserLocation(location));
+    User newUser = userRepository.save(user);
+    if (user.equals(newUser)) {
+      //return ResponseEntity.status(HttpStatus.OK).build();
+    } else {
+      //return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+    }
+    return "redirect:/user";
+  }
+
+  /*
+  @PostMapping(value = "/user/submitLocation")
+  public void persistLocation(@RequestParam("userLocation") String location) {
+    user.addLoaction(new UserLocation(location));
+    User newUser = userRepository.save(user);
+    if (user.equals(newUser)) {
+      //return ResponseEntity.status(HttpStatus.OK).build();
+    } else {
+      //return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+    }
+  }
+  */
 }

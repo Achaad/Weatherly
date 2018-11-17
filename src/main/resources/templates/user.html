@@ -15,17 +15,19 @@
         <p>Enjoy it, you lucky bastard</p>
     </div>
 
-    <div>
-       <a href="/logout">Log out</a>
+    <form method="post" action="/user/submitLocation" class="hide-on-med-and-down" id="searchBar">
+        <div class="input-field row center" style="max-width: 400pt;">
+            <input id="userLocation" type="text" name="userLocation" placeholder="Country,Region,City">
+            <input type="submit" th:value="#{addLocation}">
+            <!--<input class="btn-small waves-effect waves-light light-blue" type="reset" th:value="#{addLocation}"  onclick="submitLocation()"/>-->
+        </div>
+    </form>
+
+    <div><input class="btn-small waves-effect waves-light light-green" onclick="logout()">Log out</input>
     </div>
 
-    <script type="text/javascript">
 
-        var logout = function () {
-            $.post("/logout");
-            return true;
-        }
-    </script>
+    <script type="text/javascript" th:src="@{/js/user.js}"></script>
 
 </body>
 </html>

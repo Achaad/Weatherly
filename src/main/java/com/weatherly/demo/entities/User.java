@@ -1,7 +1,12 @@
 package com.weatherly.demo.entities;
 
+import com.weatherly.demo.services.Location;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Entity class that represents User DB table
@@ -24,8 +29,9 @@ public class User {
 
     private String mail;
 
-    @ElementCollection
-    private List<String> locations;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="user_locations", joinColumns = @JoinColumn(name = "id"))
+    private Set<UserLocation> locations = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -67,11 +73,11 @@ public class User {
         this.mail = mail;
     }
 
-    public List<String> getLocations() {
+    public Set<UserLocation> getLocations() {
         return locations;
     }
 
-    public void setLocations(List<String> locations) {
+    public void setLocations(Set<UserLocation> locations) {
         this.locations = locations;
     }
 
@@ -81,5 +87,27 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public boolean addLoaction(UserLocation location) {
+        return this.locations.add(location);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null) {
+            return false;
+        }
+
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+        return Objects.equals(this.id, user.id) && Objects.equals(this.userId, user.userId);
     }
 }
