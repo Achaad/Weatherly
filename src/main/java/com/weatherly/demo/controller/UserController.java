@@ -44,9 +44,6 @@ public class UserController {
   @Autowired
   private UserRepository userRepository;
 
-  private User user = new User();
-
-
   @GetMapping("/user")
   public String homePage(Model model, OAuth2Authentication authentication, HttpServletRequest servletRequest) {
 
@@ -63,7 +60,7 @@ public class UserController {
     String visitTime = dateFormat.format(Calendar.getInstance().getTime());
     String subject = "Login";
 
-
+    User user = new User();
 
     // Adds user to the table if he is not present there
     if (userRepository.findAllByUserId(userId).size() == 0) {
@@ -92,7 +89,10 @@ public class UserController {
 
 
   @PostMapping(value = "/user/submitLocation")
-  public String uploadLocation(@RequestParam("userLocation") String location, RedirectAttributes redirectAttributes) {
+  public String uploadLocation(@RequestParam("userLocation") String location, RedirectAttributes redirectAttributes, OAuth2Authentication authentication) {
+    LinkedHashMap<String, String> userDetails =
+            (LinkedHashMap<String, String>) authentication.getUserAuthentication().getDetails();
+    User user = userRepository.findByUserId(userDetails.get("id"));
     user.addLoaction(new UserLocation(location));
     User newUser = userRepository.save(user);
     if (user.equals(newUser)) {
@@ -102,17 +102,4 @@ public class UserController {
     }
     return "redirect:/user";
   }
-
-  /*
-  @PostMapping(value = "/user/submitLocation")
-  public void persistLocation(@RequestParam("userLocation") String location) {
-    user.addLoaction(new UserLocation(location));
-    User newUser = userRepository.save(user);
-    if (user.equals(newUser)) {
-      //return ResponseEntity.status(HttpStatus.OK).build();
-    } else {
-      //return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
-    }
-  }
-  */
 }
