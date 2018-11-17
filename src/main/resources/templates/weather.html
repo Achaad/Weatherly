@@ -19,23 +19,23 @@
             <br><br>
 
             <div class="row left-align">
-                <h5 th:text="'Weather state: ' + ${weatherState}"></h5>
+                    <h5 th:utext="#{weatherState} + ${weatherState}"></h5>
             </div>
 
             <div class="row left-align">
-                    <h5 th:text="'Temperature: ' + ${temperature} + ' °C'"></h5>
+                    <h5 th:utext="#{temperature} + ${temperature} + ' °C'"></h5>
             </div>
 
             <div class="row left-align">
-                <h5 th:text="'Precipitation: ' + ${precipitation} + ' mm'"></h5>
+                <h5 th:utext="#{precipitation} + ${precipitation} + ' mm'"></h5>
             </div>
 
             <div class="row left-align">
-                 <h5 th:text="'Windspeed: ' + ${windSpeed} + ' m/s'"></h5>
+                 <h5 th:utext="#{windSpeed} + ${windSpeed} + ' m/s'"></h5>
             </div>
 
             <div class="row left-align">
-                <h5 th:text="'Wind Direction: ' + ${windDirection}"></h5>
+                <h5 th:utext="#{windDirection} + ${windDirection}"></h5>
             </div>
 
         </div>
