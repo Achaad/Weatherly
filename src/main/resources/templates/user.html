@@ -23,11 +23,10 @@
         </div>
     </form>
 
-    <div><input class="btn-small waves-effect waves-light light-green" onclick="logout()">Log out</input>
+    <div>
+        <form method="post" action="/logout">
+            <input type="submit" class="btn-small waves-effect waves-light light-green" th:value="#{logout}">
+        </form>
     </div>
-
-
-    <script type="text/javascript" th:src="@{/js/user.js}"></script>
-
 </body>
 </html>
