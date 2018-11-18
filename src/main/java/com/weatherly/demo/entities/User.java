@@ -1,7 +1,5 @@
 package com.weatherly.demo.entities;
 
-import org.apache.commons.collections4.list.SetUniqueList;
-
 import javax.persistence.*;
 import java.util.*;
 
