@@ -102,7 +102,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
           .antMatchers("/user").authenticated()
         .and().authorizeRequests().anyRequest().permitAll()
-          .and().formLogin().loginPage("/login").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").permitAll().and()
+          .and().formLogin().loginPage("/login").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").permitAll().and()
         .csrf().disable();
   }
 }

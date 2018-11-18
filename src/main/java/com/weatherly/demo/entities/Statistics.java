@@ -72,9 +72,4 @@ public class Statistics {
   public void setMobile(Boolean mobile) {
     this.mobile = mobile;
   }
-
-
-
-
-
 }
