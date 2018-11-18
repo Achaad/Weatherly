@@ -15,17 +15,50 @@
         <p>Enjoy it, you lucky bastard</p>
     </div>
 
+    <div th:if="${message}">
+        <h5 style="text-align: center" th:text="${message}"/>
+    </div>
+    <form method="post" action="/user/submitLocation" class="hide-on-med-and-down" id="searchBar">
+        <div class="input-field row center" style="max-width: 400pt;">
+            <input id="userLocation" type="text" name="userLocation" placeholder="Country,Region,City">
+            <input type="submit" th:value="#{addLocation}">
+            <!--<input class="btn-small waves-effect waves-light light-blue" type="reset" th:value="#{addLocation}"  onclick="submitLocation()"/>-->
+        </div>
+    </form>
+
     <div>
-       <a href="/logout">Log out</a>
+        <form method="post" action="/logout">
+            <input type="submit" class="btn-small waves-effect waves-light light-green" th:value="#{logout}" onclick="displayLogoutMessage()">
+        </form>
     </div>
 
-    <script type="text/javascript">
+    <!--Table that is used for pagination and displaying of user locations-->
+    <table border="1">
+        <thead>
+            <tr>
+                <th th:text="Country"/>
+                <th th:text="Region"/>
+                <th th:text="City"/>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="location, iStat : ${locationPage.content}"
+                th:style="${iStat.odd}? 'font-weight: bold'"
+                th:alt-title="${iStat.even}? 'even' : 'odd'"
+                th:onclick="'javascript:rowClicked(\'' + ${location.location} + '\');'">
+                <td th:text="${location.country}" />
+                <td th:text="${location.region}" />
+                <td th:text="${location.city}"/>
+            </tr>
+        </tbody>
+    </table>
+    <div th:if="${locationPage.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/user(size=${locationPage.size}, page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==locationPage.number + 1} ? active"></a>
+    </div>
 
-        var logout = function () {
-            $.post("/logout");
-            return true;
-        }
-    </script>
-
+    <script type="text/javascript" th:src="@{/js/user.js}"></script>
 </body>
 </html>

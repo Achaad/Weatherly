@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+
 @Controller
 public class WeatherController {
 
@@ -23,14 +25,17 @@ public class WeatherController {
         Weather weather = new Weather(location);
 
 
-        model.addAttribute("weatherState", weather.getWeatherState());
-        model.addAttribute("precipitation",  weather.getPrecipitation());
-        model.addAttribute("temperature", weather.getTemp());
-        model.addAttribute("windDirection", weather.getWindDirection());
-        model.addAttribute("windSpeed", weather.getWindSpeed());
+        String asukoht = location.getCity() + ", " + location.getCountry() +
+                ", " + location.getRegionName();
 
+        File tagataust = new File("/resources/static/images/ilusilm.jpg");
 
-
+        model.addAttribute("asukoht", asukoht);
+        model.addAttribute("tagataust", tagataust);
+        model.addAttribute("temperatuur", weather.getTemp());
+        model.addAttribute("sademed", weather.getPrecipitation());
+        model.addAttribute("suund", weather.getWindDirection());
+        model.addAttribute("kiirus", weather.getWindSpeed());
 
         return "weather";
     }
