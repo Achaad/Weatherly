@@ -5,20 +5,19 @@ import com.weatherly.demo.entities.UserLocation;
 import com.weatherly.demo.repositories.UserRepository;
 import com.weatherly.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
@@ -89,7 +88,7 @@ public class UserController {
    * @param location String. Should be in format Country,Region,City unless we implement a hashmap for locations
    * @param redirectAttributes used to redirect back to the /user page
    * @param authentication used to get the information about the logged in user
-   * @return redirects back to the user
+   * @return redirects back to the user page
    */
   @PostMapping(value = "/user/submitLocation")
   public String uploadLocation(@RequestParam("userLocation") String location, RedirectAttributes redirectAttributes, OAuth2Authentication authentication) {
