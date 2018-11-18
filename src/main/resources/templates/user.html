@@ -15,6 +15,9 @@
         <p>Enjoy it, you lucky bastard</p>
     </div>
 
+    <div th:if="${message}">
+        <h5 style="text-align: center" th:text="${message}"/>
+    </div>
     <form method="post" action="/user/submitLocation" class="hide-on-med-and-down" id="searchBar">
         <div class="input-field row center" style="max-width: 400pt;">
             <input id="userLocation" type="text" name="userLocation" placeholder="Country,Region,City">
