@@ -1,5 +1,7 @@
 package com.weatherly.demo.entities;
 
+import org.apache.commons.collections4.list.SetUniqueList;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -26,7 +28,7 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="user_locations", joinColumns = @JoinColumn(name = "id"))
-    private Set<UserLocation> locations = new LinkedHashSet<>();
+    private List<UserLocation> locations = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -72,8 +74,8 @@ public class User {
         return new LinkedHashSet<>(locations);
     }
 
-    public void setLocations(Set<UserLocation> locations) {
-        this.locations = new LinkedHashSet<>(locations);
+    public void setLocations(List<UserLocation> locations) {
+        this.locations = new ArrayList<>(locations);
     }
 
     public String getUserId() {

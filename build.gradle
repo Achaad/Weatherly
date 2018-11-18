@@ -58,6 +58,9 @@ dependencies {
     compile('org.springframework.session:spring-session-core')
     compile('javax.xml.bind:jaxb-api:2.3.0') // To support working with database as JAVAXB is
     // deprecateed
+
+    compile('org.apache.commons:commons-collections4:4.2')
+    
     runtime('org.springframework.boot:spring-boot-devtools')
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
     compileOnly('org.projectlombok:lombok:1.18.4')

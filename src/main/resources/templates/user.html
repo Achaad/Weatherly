@@ -44,7 +44,8 @@
         <tbody>
             <tr th:each="location, iStat : ${locationPage.content}"
                 th:style="${iStat.odd}? 'font-weight: bold'"
-                th:alt-title="${iStat.even}? 'even' : 'odd'">
+                th:alt-title="${iStat.even}? 'even' : 'odd'"
+                th:onclick="'javascript:rowClicked(\'' + ${location.location} + '\');'">
                 <td th:text="${location.country}" />
                 <td th:text="${location.region}" />
                 <td th:text="${location.city}"/>
