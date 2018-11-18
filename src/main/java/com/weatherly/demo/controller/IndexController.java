@@ -81,6 +81,7 @@ public class IndexController {
             model.addAttribute("kiirus", weather.getWindSpeed());
             model.addAttribute("location", location.toString());
             model.addAttribute("weather", weather.toString());
+            model.addAttribute("ilmaStaatus", weather.getWeatherState());
             statisticsRepository.save(s);
 
         return "index";    //  vajalik panna HTML faili nimi

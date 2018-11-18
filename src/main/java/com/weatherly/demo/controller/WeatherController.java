@@ -36,6 +36,7 @@ public class WeatherController {
         model.addAttribute("sademed", weather.getPrecipitation());
         model.addAttribute("suund", weather.getWindDirection());
         model.addAttribute("kiirus", weather.getWindSpeed());
+        model.addAttribute("ilmaStaatus", weather.getWeatherState());
 
         return "weather";
     }
