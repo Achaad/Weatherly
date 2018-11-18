@@ -1,12 +1,7 @@
 package com.weatherly.demo.entities;
 
-import com.weatherly.demo.services.Location;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Entity class that represents User DB table
@@ -31,7 +26,7 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="user_locations", joinColumns = @JoinColumn(name = "id"))
-    private Set<UserLocation> locations = new HashSet<>();
+    private Set<UserLocation> locations = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -73,12 +68,12 @@ public class User {
         this.mail = mail;
     }
 
-    public Set<UserLocation> getLocations() {
-        return locations;
+    public LinkedHashSet<UserLocation> getLocations() {
+        return new LinkedHashSet<>(locations);
     }
 
     public void setLocations(Set<UserLocation> locations) {
-        this.locations = locations;
+        this.locations = new LinkedHashSet<>(locations);
     }
 
     public String getUserId() {

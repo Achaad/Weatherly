@@ -11,4 +11,8 @@ public interface UserService {
     Page<User> listAllByPage(Pageable page);
 
     public void addLocation(String location, String userId);
+
+    public Page<UserLocation> listLocationsById(Pageable pageable, Integer id);
 }
+
+

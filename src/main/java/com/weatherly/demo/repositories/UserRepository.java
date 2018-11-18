@@ -15,11 +15,9 @@ import java.util.Locale;
 
 public interface UserRepository extends PagingAndSortingRepository<User, Integer> {
 
-
-    @Query(value = "SELECT locations FROM user WHERE id = :userId", nativeQuery = true)
-    List<String> findLocationsById(@Param("userId") Integer userId);
-
     List<User> findAllByUserId(String id);
 
     User findByUserId(String id);
+
+    User findUserById(Integer id);
 }

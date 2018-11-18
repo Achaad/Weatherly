@@ -32,6 +32,32 @@
         </form>
     </div>
 
+    <!--Table that is used for pagination and displaying of user locations-->
+    <table border="1">
+        <thead>
+            <tr>
+                <th th:text="Country"/>
+                <th th:text="Region"/>
+                <th th:text="City"/>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="location, iStat : ${locationPage.content}"
+                th:style="${iStat.odd}? 'font-weight: bold'"
+                th:alt-title="${iStat.even}? 'even' : 'odd'">
+                <td th:text="${location.country}" />
+                <td th:text="${location.region}" />
+                <td th:text="${location.city}"/>
+            </tr>
+        </tbody>
+    </table>
+    <div th:if="${locationPage.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/user(size=${locationPage.size}, page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==locationPage.number + 1} ? active"></a>
+    </div>
+
     <script type="text/javascript" th:src="@{/js/user.js}"></script>
 </body>
 </html>

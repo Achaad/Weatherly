@@ -6,6 +6,8 @@ import com.weatherly.demo.repositories.UserRepository;
 import com.weatherly.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +21,15 @@ import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class UserController {
+
+  private static int currentPage = 1;
+  private static int pageSize = 5;
 
   final UserService userService;
 
@@ -41,9 +45,9 @@ public class UserController {
   private UserRepository userRepository;
 
   @GetMapping("/user")
-  public String homePage(Model model, OAuth2Authentication authentication, HttpServletRequest servletRequest) {
-
-    List<String> userLocations;
+  public String homePage(Model model, OAuth2Authentication authentication, HttpServletRequest servletRequest,
+                         @RequestParam("page") Optional<Integer> page,
+                         @RequestParam("size") Optional<Integer> size) {
 
     // Gets user information
     LinkedHashMap<String, String> userDetails =
@@ -72,14 +76,28 @@ public class UserController {
     userRepository.save(user);
 
 
-
+    // Sends mail to the user
     String message = "Hello " + userName + ",\n" +
         "We have noticed that You have accessed our webpage on " + visitTime + " from this ip: " +
         ipAddress + ". If it was " +
         "not You, please contact us at weatherly.me@gmail.com";
     mailSender.sendSimpleMessage(userMail, subject, message);
 
-    return "user";
+    // Pagination
+    page.ifPresent(p -> currentPage = p);
+    size.ifPresent(s -> pageSize = s);
+
+    Page<UserLocation> locationPage = userService.listLocationsById(PageRequest.of(currentPage - 1, pageSize), user.getId());
+
+    model.addAttribute("locationPage", locationPage);
+
+    int totalPages = locationPage.getTotalPages();
+    if (totalPages > 0) {
+      List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+      model.addAttribute("pageNumbers", pageNumbers);
+    }
+
+    return "user.html";
   }
 
 
