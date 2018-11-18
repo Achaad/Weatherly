@@ -17,3 +17,27 @@
     width: 100%;
     background-image: url('../resources/images/cloudy.jpeg');
 }
+.vasak , .keskel , .parem{
+    display: inline-block;
+    vertical-align: top;
+    *display: inline
+}
+.vasak {
+    width: 40%;
+}
+.keskel {
+    width: 30%;
+}
+.parem {
+    width: 20%;
+}
+.konteiner {
+    height: 100%;
+    width: 100%;
+}
+.suur {
+    font-size: 25px;
+}
+#tere {
+    background-color:powderblue;
+}
