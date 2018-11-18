@@ -6,12 +6,14 @@ import com.weatherly.demo.repositories.StatisticsRepository;
 import com.weatherly.demo.services.Location;
 import com.weatherly.demo.services.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Null;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -66,12 +68,22 @@ public class IndexController {
 
             location = new Location(this.ipAddress);
             Weather weather = new Weather(location.getLatitude(), location.getLongitude());
+            String asukoht = location.getCity() + ", " + location.getCountry() +
+                    ", " + location.getRegionName();
 
+            File tagataust = new File("/resources/static/images/ilusilm.jpg");
+
+            model.addAttribute("asukoht", asukoht);
+            model.addAttribute("tagataust", tagataust);
+            model.addAttribute("temperatuur", weather.getTemp());
+            model.addAttribute("sademed", weather.getPrecipitation());
+            model.addAttribute("suund", weather.getWindDirection());
+            model.addAttribute("kiirus", weather.getWindSpeed());
             model.addAttribute("location", location.toString());
             model.addAttribute("weather", weather.toString());
             statisticsRepository.save(s);
 
-        return "index";    //vajalik pannab HTML faili nimi
+        return "index";    //  vajalik panna HTML faili nimi
     }
 
 
