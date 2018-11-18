@@ -3,19 +3,18 @@
 <html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org" manifest="offline.appcache">
 
 <head>
-    <th:block th:include="fragments/head"/>
     <title>Weatherly - Weather</title>
 </head>
 
 
 
 <body>
+        <th:block th:include="fragments/head"> </th:block>
+        <th:block th:replace="fragments/navigation"> </th:block>
 
-    <th:block th:replace="fragments/navigation"/>
 
 
-
-        <div class="container" align="left">
+        <div class="container" style="align-content: center">
             <br><br>
 
             <div class="row left-align">
@@ -39,17 +38,5 @@
             </div>
 
         </div>
-
-
-
-
-
 </body>
-
-
-
-
-
-
-
 </html>

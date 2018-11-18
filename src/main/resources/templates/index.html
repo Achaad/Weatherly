@@ -3,16 +3,15 @@
 
 <head>
     <title>Weatherly</title>
-    <th:block th:include="fragments/head"/>
 
 </head>
 
+
+
 <body>
 
-<!-- style="background-image: url(../images/cloudy.jpeg);" -->
-
-<th:block th:replace="fragments/navigation"/>
-
+  <th:block th:include="fragments/head"> </th:block>
+  <th:block th:replace="fragments/navigation"></th:block>
 
 
   <div class="section no-pad-bot" id="index-banner">
@@ -50,13 +49,17 @@
  <!-- </div> -->
 
 
-  <th:block th:replace="fragments/footer"/>
+
 
   <!--  Scripts-->
 
   <script type="text/javascript" th:src="@{/js/materialize.js}"></script>
   <script type="text/javascript" th:src="@{/js/index.js}"></script>
-  <script tpye="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
+  <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
 
-  </body>
+  <th:block th:replace="fragments/footer" > </th:block>
+
+</body>
+
+
 </html>

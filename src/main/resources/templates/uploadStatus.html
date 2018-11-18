@@ -2,21 +2,20 @@
 <html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org" manifest="offline.appcache">
 <head>
     <meta charset="UTF-8">
-
-    <th:block th:include="fragments/head"/>
     <title>Title</title>
 </head>
 <body>
-<th:block th:replace="fragments/navigation"/>
+<th:block th:include="fragments/head"> </th:block>
+<th:block th:replace="fragments/navigation"> </th:block>
 <div th:if="${message}">
     <br>
     <br>
     <br>
-    <h6 th:text="${message}"/>
+    <h6 th:text="${message}"> </h6>
     <br>
     <br>
     <br>
 </div>
-<th:block th:replace="fragments/footer"/>
+<th:block th:replace="fragments/footer"> </th:block>
 </body>
 </html>

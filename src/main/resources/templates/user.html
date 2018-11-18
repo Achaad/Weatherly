@@ -2,12 +2,12 @@
 <html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org" manifest="offline.appcache">
 
 <head>
-    <th:block th:include="fragments/head"/>
     <title>Weatherly - User</title>
 </head>
 
 <body>
-    <th:block th:replace="fragments/navigation"/>
+<th:block th:include="fragments/head"> </th:block>
+<th:block th:replace="fragments/navigation"> </th:block>
 
     <div class="container">
         <h3>This is a restricted page shown only to registered users.</h3>
