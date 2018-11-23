@@ -36,6 +36,10 @@ dependencies {
     compile("org.webjars:sockjs-client:1.0.2")
     compile("org.webjars:stomp-websocket:2.3.3")
 
+    // Selenium dependencies (Automated testing)
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
+    compile 'junit:junit:4.12'
+
     // OAuth2 dependencies
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.security.oauth:spring-security-oauth2')
