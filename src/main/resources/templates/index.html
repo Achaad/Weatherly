@@ -28,12 +28,12 @@
         <h3 th:text="${temperatuur} + ' °C'" th:style="${temperatuur > 0 ? 'color: red;' : 'color: blue;'}" align="left"></h3>
       </div>
       <div class="keskel">
-        <h5 th:utext="#{windSpeed}" align="left"></h5>
-        <h3 th:text="${kiirus} + ' m/s'" align="left"></h3>
+        <h5 class="vasakulepoole" th:utext="#{windSpeed}"></h5>
+        <h3 class="vasakulepoole" th:text="${kiirus} + ' m/s'"></h3>
       </div>
         <div class="parem">
-          <h5 th:utext="#{precipitation}" align="right"></h5>
-          <h3 th:text="${sademed}" align="right"></h3>
+          <h5 class="paremalepoole" th:utext="#{precipitation}"></h5>
+          <h3 class="paremalepoole" th:text="${sademed}"></h3>
         </div>
       </div>
       <br>
