@@ -42,7 +42,7 @@ public class IndexController {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
 
         this.ipAddress = servletRequest.getHeader("x-real-ip"); //Returns IP Address
-        this.ipAddress = "193.40.12.10"; //TODO: Revert back for deployment
+        //this.ipAddress = "193.40.12.10"; //TODO: Revert back for deployment
       
         parseHeaderAgent(servletRequest.getHeader("User-Agent"));
         this.visitTime = dateFormat.format(Calendar.getInstance().getTime());
@@ -81,7 +81,7 @@ public class IndexController {
             model.addAttribute("kiirus", weather.getWindSpeed());
             model.addAttribute("location", location.toString());
             model.addAttribute("weather", weather.toString());
-
+            model.addAttribute("ilmaStaatus", weather.getWeatherState());
             statisticsRepository.save(s);
 
         return "index";    //  vajalik panna HTML faili nimi

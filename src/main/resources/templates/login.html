@@ -3,11 +3,11 @@
 
 <head>
     <title>Login page</title>
-    <th:block th:include="fragments/head"/>
 </head>
 
 <body>
-    <th:block th:replace="fragments/navigation"/>
+    <th:block th:include="fragments/head"> </th:block>
+    <th:block th:replace="fragments/navigation"> </th:block>
 
     <h2>Log in:</h2>
     <p><a href="/login/google">Google login</a></p>
@@ -19,7 +19,6 @@
         <label for="userfile">Your file:</label>
         <input type="file" id="userfile" name="file" /><br/><br/>
         <input type="submit" value="Submit" />
-    </form>
     </form>
 </body>
 </html>

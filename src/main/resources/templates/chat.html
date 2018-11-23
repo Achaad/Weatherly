@@ -3,7 +3,7 @@
 
 <head>
     <title>Weatherly - WebChat</title>
-    <th:block th:include="fragments/head"/>
+
 </head>
 
 
@@ -14,13 +14,14 @@
     Javascript and reload this page!</h2>
 </noscript>
 
-<th:block th:replace="fragments/navigation"/>
+<th:block th:include="fragments/head"> </th:block>
+<th:block th:replace="fragments/navigation"> </th:block>
 
 <br><br>
 <br><br>
 <br><br>
 
-<div id="main-content" class="container" align="center">
+<div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">
             <form class="form-inline">

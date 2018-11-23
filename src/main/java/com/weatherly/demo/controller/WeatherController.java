@@ -15,7 +15,7 @@ public class WeatherController {
 
 
     // Weather API to be redirected to ... (Might have to change responsebody)
-    // http://localhost:8080/weather?country=Estonia&regionName=Tartumaa&city=Tartu
+    // http://localhost:8080/data/weather?country=Estonia&regionName=Tartumaa&city=Tartu
 
     @GetMapping(path="/data/weather") // Map ONLY GET Requests
     public String weatherPage (Model model, @RequestParam String country
@@ -23,6 +23,7 @@ public class WeatherController {
 
         Location location = new Location(country, regionName, city);
         Weather weather = new Weather(location);
+
 
         String asukoht = location.getCity() + ", " + location.getCountry() +
                 ", " + location.getRegionName();
@@ -35,6 +36,8 @@ public class WeatherController {
         model.addAttribute("sademed", weather.getPrecipitation());
         model.addAttribute("suund", weather.getWindDirection());
         model.addAttribute("kiirus", weather.getWindSpeed());
+        model.addAttribute("ilmaStaatus", weather.getWeatherState());
+
         return "weather";
     }
 
