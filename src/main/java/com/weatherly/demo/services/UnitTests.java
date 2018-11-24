@@ -3,6 +3,12 @@ package com.weatherly.demo.services;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 /*
@@ -10,6 +16,33 @@ import org.junit.Test;
  */
 public class UnitTests {
 
+    @Test
+    public void indexTest(){
+        WebDriver driver = new ChromeDriver();
+
+         driver.get("http://localhost:8080/");
+
+        ((ChromeDriver) driver).executeScript("window.resizeTo(1024, 768);");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement searchbar = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.id("search")));
+
+        searchbar.sendKeys("Estonia,Tartumaa,Tartu");
+
+        WebElement button = driver.findElement(By.xpath("//*[@id=\"searchBar\"]/div/i"));
+        button.click();
+
+        // Check the title of the page
+        System.out.println("Page title is: " + driver.getTitle());
+
+        WebElement location = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"index-banner\"]/div/div[3]/p")));
+
+        Assert.assertEquals("your location: tartu, estonia, tartumaa", location.getText().toLowerCase());
+
+        driver.quit();
+
+    }
 
     @Test
     public void weatherTestLocation(){
