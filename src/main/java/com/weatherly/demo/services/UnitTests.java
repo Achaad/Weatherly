@@ -12,6 +12,34 @@ public class UnitTests {
 
 
     @Test
+    public void weatherTestLocation(){
+        Weather weather = new Weather(new Location("Estonia", "Tartumaa", "Tartu"));
+
+        Assert.assertNotEquals("", weather.getPrecipitation());
+        Assert.assertNotEquals(null, weather.getTemp());
+        Assert.assertNotEquals(null, weather.getWindSpeed());
+        Assert.assertNotEquals("", weather.getWindDirection());
+        Assert.assertNotEquals("", weather.toString());
+        Assert.assertNotEquals("", weather.getWeatherState());
+
+
+    }
+
+    @Test
+    public void weatherTestLatLong(){
+        Location location = new Location("193.40.12.10");
+        Weather weather = new Weather(location.getLatitude(), location.getLongitude());
+
+        Assert.assertNotEquals("tundmatu", weather.getPrecipitation());
+        Assert.assertNotEquals("tundmatu", weather.getWeatherState());
+        Assert.assertNotEquals("tundmatu", weather.getWindDirection());
+        Assert.assertNotEquals("", weather.toString());
+        Assert.assertNotEquals(null, weather.getTemp());
+        Assert.assertNotEquals(null, weather.getWindSpeed());
+
+    }
+
+    @Test
     public void LocationTestIP(){
         Location location = new Location("193.40.12.10");
 
