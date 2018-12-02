@@ -52,6 +52,7 @@ repositories {
 
 tasks.build.dependsOn(myMinify)
 bootJar.dependsOn(myMinify)
+bootRun.dependsOn(myMinify)
 
 bootJar{
 
