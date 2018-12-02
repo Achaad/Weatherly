@@ -5,13 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class IdLoginController {
+public class SitemapController {
 
-    @GetMapping("/idlogin")
-    public String homePage(Model model){
+    @GetMapping("/sitemap")
+    public String homePage(Model model) {
 
-        return "idlogin";
+        return "Sitemap";
     }
-
 
 }
