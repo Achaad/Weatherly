@@ -10,6 +10,29 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.eriwen.gradle.js" version "2.14.1"
+}
+
+import com.eriwen.gradle.js.tasks.MinifyJsTask
+
+def srcDir = projectDir.getAbsolutePath() + '/src/main/resources/static/js'
+def dynamicTaskNames = []
+def dynamicTaskIndex = 1
+
+new File(srcDir).eachFile {def file ->
+    def dynamicTaskName = "taskMinify${dynamicTaskIndex}"
+
+    task "${dynamicTaskName}"(type: MinifyJsTask) {
+        source = file.absolutePath
+        dest = "${buildDir}/resources/main/static/js/${file.name}"
+        //closure = { warningLevel = 'QUIET'}
+    }
+
+    dynamicTaskNames << dynamicTaskName
+    dynamicTaskIndex++
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -19,13 +42,24 @@ group = 'com.weatherly'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+task myMinify(dependsOn: dynamicTaskNames) << {
+    println("done.")
+}
+
 repositories {
     mavenCentral()
 }
+
+tasks.build.dependsOn(myMinify)
+bootJar.dependsOn(myMinify)
+bootRun.dependsOn(myMinify)
+
 bootJar{
+
     baseName = 'gs-accessing-data-mysql'
     launchScript()
 }
+
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-aop')
