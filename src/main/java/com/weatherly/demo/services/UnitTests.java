@@ -12,12 +12,97 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 /*
-    Backend Unit tests
+    Back and frontend Unit tests
  */
 public class UnitTests {
 
+    // Check that stats canvas is being drawn properly
     @Test
-    public void indexTest(){
+    public void statisticsTest(){
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://localhost:8080/");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        WebElement stats = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"nav-mobile\"]/li[2]/a")));
+
+        stats.click();
+
+        WebElement canvas = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"browserCanvas\"]")));
+
+        Assert.assertEquals(400, canvas.getSize().width);
+        Assert.assertEquals(400, canvas.getSize().height);
+
+        driver.quit();
+    }
+
+    @Test
+    public void loginTest(){
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://localhost:8080/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        WebElement login = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"nav-mobile\"]/li[3]/a")));
+
+        login.click();
+
+        WebElement googleLogin = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/p[1]/a")));
+
+        googleLogin.click();
+
+
+        //
+
+        WebElement loginContent = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"headingText\"]/content")));
+
+        Assert.assertEquals("logige sisse", loginContent.getText().toLowerCase());
+
+        driver.quit();
+    }
+
+    // Test if language changes correctly
+    @Test
+    public void languageTest(){
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://localhost:8080/");
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        WebElement language = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"language_dropdown_button\"]/span")));
+
+        language.click();
+
+        // //*[@id="language_dropdown"]/li[2]/a
+        WebElement estonian = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"language_dropdown\"]/li[2]/a")));
+        estonian.click();
+
+
+        WebElement ilm = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tere\"]")));
+        WebElement temp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"index-banner\"]/div/div[2]/div[1]/h5")));
+
+        Assert.assertEquals("praegune ilm: tundmatu",ilm.getText().toLowerCase());
+        Assert.assertEquals("temperatuur", temp.getText().toLowerCase());
+
+        driver.quit();
+
+    }
+
+    // Tests if the searching for Tartu routes you correctly and displays the right location data.
+    @Test
+    public void searchWeatherTest(){
         WebDriver driver = new ChromeDriver();
 
          driver.get("http://localhost:8080/");
