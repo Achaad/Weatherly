@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org" manifest="offline.appcache"
+<html th:lang="#{language_code}" xmlns:th="http://www.thymeleaf.org"
       xmlns:width="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -9,7 +9,7 @@
 
 
 
-<body class="background">
+<body th:class="${taust}">
 
   <th:block th:include="fragments/head"> </th:block>
   <th:block th:replace="fragments/navigation"></th:block>
@@ -23,23 +23,21 @@
         </div>
       <div class="konteiner">
       <div class="vasak">
-      <h5 th:utext="#{temperature}" align="center">
-      </h5>
+        <h4 th:utext="#{temperature}" style="font-weight: bold" align="center"></h4>
         <h3 th:text="${temperatuur} + ' °C'" th:style="${temperatuur > 0 ? 'color: red;' : 'color: blue;'}" align="center"></h3>
       </div>
       <div class="keskel">
-        <h5 th:utext="#{windSpeed}" align="left"></h5>
+        <h4 th:utext="#{windSpeed}" style="font-weight: bold" align="left"></h4>
         <h3 th:text="${kiirus} + ' m/s'" align="left"></h3>
       </div>
         <div class="parem">
-          <h5 th:utext="#{precipitation}" align="right"></h5>
+          <h4 th:utext="#{precipitation}" style="font-weight: bold" align="right"></h4>
           <h3 th:text="${sademed}" align="right"></h3>
         </div>
       </div>
       <br>
       <div class="row center">
-        <p th:utext="#{location} + ' ' + ${asukoht}" class="suur">
-        </p>
+        <h4 th:utext="#{location} + ' ' + ${asukoht}" style="font-weight: bold"></h4>
       </div>
     </div>
         <br><br>
