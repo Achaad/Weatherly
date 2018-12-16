@@ -28,10 +28,20 @@ public class WeatherController {
         String asukoht = location.getCity() + ", " + location.getCountry() +
                 ", " + location.getRegionName();
 
-        File tagataust = new File("/resources/static/images/ilusilm.jpg");
+
+        String background = "clear";
+
+
+        if(weather.getWeatherState().toLowerCase().contains("cloud"))
+            background = "cloudy";
+        if(weather.getWeatherState().toLowerCase().contains("rain") || weather.getWeatherState().toLowerCase().contains("shower"))
+            background = "rainy";
+        if(weather.getWeatherState().toLowerCase().contains("snow"))
+            background = "snowy";
+
 
         model.addAttribute("asukoht", asukoht);
-        model.addAttribute("tagataust", tagataust);
+        model.addAttribute("taust", background);
         model.addAttribute("temperatuur", weather.getTemp());
         model.addAttribute("sademed", weather.getPrecipitation());
         model.addAttribute("suund", weather.getWindDirection());

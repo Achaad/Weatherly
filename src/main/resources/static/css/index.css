@@ -2,6 +2,10 @@
 /**
  * Use this file to override Materialize files so you can update
  * the core Materialize files in the future
+   CLOUDY = https://i.gyazo.com/799d044ed23f71695538cb105bae0cf8.png
+   CLEAR = https://i.gyazo.com/f8da3d6f7afbc6b6e4961d9ff1d6480f.png
+   RAINY = https://i.gyazo.com/682d25eb0d2434f397fb882f1ee26f79.jpg
+   SNOWY = https://i.gyazo.com/4dac0aafeff3591286694a3d2bfb1aff.png
  *
  * Made By MaterializeCSS.com
  */
@@ -13,10 +17,28 @@
 	font-size: inherit;
 }
 
-.background {
-    width: 100%;
-    background-image: url('../resources/images/cloudy.jpeg');
+.clear {
+    background: url(https://i.gyazo.com/f8da3d6f7afbc6b6e4961d9ff1d6480f.png) no-repeat center center fixed;
 }
+.rainy{
+    background: url(https://i.gyazo.com/682d25eb0d2434f397fb882f1ee26f79.jpg) no-repeat center center fixed;
+}
+.snowy{
+    background: url(https://i.gyazo.com/4dac0aafeff3591286694a3d2bfb1aff.png) no-repeat center center fixed;
+}
+.cloudy{
+    background: url(https://i.gyazo.com/799d044ed23f71695538cb105bae0cf8.png) no-repeat center center fixed;
+}
+
+.snowy, .rainy, .clear, .cloudy {
+    width: 100%;
+    -webkit-webkit-background-size: cover;
+    -moz-webkit-background-size: cover;
+    -o-webkit-background-size: cover;
+    background-size: cover;
+}
+
+
 .vasak , .keskel , .parem{
     display: inline-block;
     vertical-align: top;
@@ -38,6 +60,28 @@
 .suur {
     font-size: 25px;
 }
-#tere {
-    background-color:powderblue;
+
+#search{
+    border: thick solid;
+}
+.solidBorder{
+    border: thick solid;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: black;
+    font-weight: bold;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: black;
+    font-weight: bold;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: black;
+    font-weight: bold;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: black;
+    font-weight: bold;
 }
