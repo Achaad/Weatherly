@@ -74,11 +74,11 @@ public class IndexController {
 
             String background = "clear";
 
-            if(weather.getWeatherState().contains("cloud"))
+            if(weather.getWeatherState().toLowerCase().contains("cloud"))
                 background = "cloudy";
-            if(weather.getWeatherState().contains("rain") || weather.getWeatherState().contains("shower"))
+            if(weather.getWeatherState().toLowerCase().contains("rain") || weather.getWeatherState().toLowerCase().contains("shower"))
                 background = "rainy";
-            if(weather.getWeatherState().contains("snow"))
+            if(weather.getWeatherState().toLowerCase().contains("snow"))
                 background = "snowy";
 
             model.addAttribute("asukoht", asukoht);

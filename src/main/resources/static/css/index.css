@@ -64,6 +64,10 @@
 #search{
     border: thick solid;
 }
+.solidBorder{
+    border: thick solid;
+}
+
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: pink;
